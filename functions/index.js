@@ -32,4 +32,10 @@ exports.createScream = functions.https.onRequest((req, res) => {
     admin.firestore()
         .collection('scream')
         .add(newScream)
-})
+        .then(doc => {
+            res.json({ message: `document ${doc.id} created successfully`});
+        })
+        .catch(err => {
+            
+        })
+});
