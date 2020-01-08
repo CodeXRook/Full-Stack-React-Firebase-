@@ -8,6 +8,6 @@ exports.helloWorld = functions.https.onRequest((request, response) => {
  response.send("Hello world!");
 });
 
-exports.getScreams = function.https.onRequest((req, res) => {
+exports.getScreams = functions.https.onRequest((req, res) => {
 
 })
