@@ -36,6 +36,7 @@ exports.createScream = functions.https.onRequest((req, res) => {
             res.json({ message: `document ${doc.id} created successfully`});
         })
         .catch(err => {
-            
+            res.status(500).json({ error: 'something went wrong'})
+            console.error(err);
         })
 });
