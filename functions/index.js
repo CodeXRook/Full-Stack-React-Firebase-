@@ -14,12 +14,12 @@ exports.getScreams = functions.https.onRequest((req, res) => {
     admin.firestore().collection('screams').get()
     .then(data => {
         let screams = [];
-        data.forEach(doc => {
+        data.forEach((doc) => {
             screams.push(doc.data());
         });
         return res.json(screams);
     })
-    .catch(err => console.error(err));
+    .catch((err) => console.error(err));
 });
 
 exports.createScream = functions.https.onRequest((req, res) => {
@@ -29,14 +29,15 @@ exports.createScream = functions.https.onRequest((req, res) => {
         createdAt: admin.firestore.Timestamp.fromDate(new Date())
     };
 
-    admin.firestore()
-        .collection('scream')
+    admin
+        .firestore()
+        .collection('screams')
         .add(newScream)
-        .then(doc => {
-            res.json({ message: `document ${doc.id} created successfully`});
+        .then((doc) => {
+            res.json({ message: `document ${doc.id} created successfully` });
         })
-        .catch(err => {
-            res.status(500).json({ error: 'something went wrong'})
+        .catch((err) => {
+            res.status(500).json({ error: 'something went wrong' });
             console.error(err);
-        })
+        });
 });
